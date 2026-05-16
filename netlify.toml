@@ -1,0 +1,19 @@
+# Netlify deployment settings
+
+[build]
+  # 빌드 단계가 없는 정적 사이트 — 루트를 그대로 발행
+  publish = "."
+
+# 한국어 보안 헤더
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# /admin 진입 시 admin/index.html 로 매핑
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200

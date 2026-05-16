@@ -1,0 +1,64 @@
+# Decap CMS — 지엘보험중개 관리자 설정
+# 게시판 글과 파일을 웹에서 직접 편집·업로드합니다.
+
+backend:
+  name: git-gateway
+  branch: main   # ← GitHub 기본 브랜치 이름과 맞춰주세요 (main / master 등)
+
+# 업로드한 파일이 저장될 폴더
+media_folder: "assets/files"
+public_folder: "/assets/files"
+
+# 한글 UI
+locale: "ko"
+
+# 사이트 미리보기 링크 (배포된 URL로 교체)
+site_url: "/"
+display_url: "/"
+
+# 변경사항을 곧바로 발행 (편집자 워크플로 없이)
+publish_mode: simple
+
+collections:
+  - name: "board"
+    label: "공시·소식 게시판"
+    description: "게시판에 노출되는 모든 글을 관리합니다. 새 글은 ‘게시글’ 목록에서 추가하세요."
+    files:
+      - file: "content/board.json"
+        label: "게시글 목록"
+        name: "posts"
+        fields:
+          - name: "posts"
+            label: "게시글"
+            label_singular: "게시글"
+            widget: "list"
+            summary: "[{{fields.catKey}}] {{fields.title}} · {{fields.date}}"
+            fields:
+              - { name: id, label: "ID (자동·중복 금지)", widget: number, value_type: int, min: 1 }
+              - { name: title, label: "제목", widget: string }
+              - name: catKey
+                label: "분류"
+                widget: select
+                options:
+                  - { label: "공지사항", value: "notice" }
+                  - { label: "리서치/보고서", value: "report" }
+                  - { label: "정책·약관", value: "policy" }
+                default: "notice"
+              - { name: date, label: "등록일", widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+              - { name: author, label: "작성자", widget: string, default: "관리부" }
+              - { name: pinned, label: "상단 고정", widget: boolean, default: false, required: false }
+              - { name: isNew, label: "NEW 뱃지", widget: boolean, default: false, required: false }
+              - { name: views, label: "조회수", widget: number, value_type: int, default: 0, required: false }
+              - name: body
+                label: "본문"
+                widget: markdown
+                hint: "마크다운으로 작성하세요. ## 소제목, - 목록 가능."
+              - name: attachments
+                label: "첨부파일"
+                widget: list
+                required: false
+                summary: "{{fields.name}}"
+                fields:
+                  - { name: name, label: "파일 표시명", widget: string }
+                  - { name: file, label: "파일 업로드", widget: file }
+                  - { name: size, label: "파일 크기 표시 (예: 2.4 MB)", widget: string, required: false }

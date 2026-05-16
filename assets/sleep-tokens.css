@@ -1,0 +1,229 @@
+/* ============================================================
+   수면 트래커 (Sleep Tracker) — Design Tokens
+   Night-first sleep management app. Deep navy canvas, gold
+   & indigo accents, mint for "edit/active" affordances.
+   ============================================================ */
+
+/* ---------- Fonts ---------- */
+/* Pretendard — Korean UI standard, matches Samsung-style system feel.
+   SF Pro fallback covers English time displays. */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css");
+
+:root {
+  /* ============================================================
+     COLORS — everything assumes dark mode (the app has no light).
+     ============================================================ */
+
+  /* --- Canvas / background layers --- */
+  --st-bg-0:          #05070F;   /* deepest — full-bleed app bg */
+  --st-bg-1:          #0B1020;   /* primary surface */
+  --st-bg-2:          #121A2E;   /* raised card */
+  --st-bg-3:          #1A2340;   /* modal / sheet */
+  --st-bg-elev:       #202944;   /* floating chip / tag */
+
+  /* Translucent scrims over imagery */
+  --st-scrim-top:     rgba(5,7,15,0.00);
+  --st-scrim-bot:     rgba(5,7,15,0.82);
+  --st-sheet-overlay: rgba(5,7,15,0.55);
+
+  /* --- Foreground / text --- */
+  --st-fg-1:          #FFFFFF;   /* headings, time display */
+  --st-fg-2:          #E6E8F2;   /* body */
+  --st-fg-3:          #A6ADC4;   /* secondary / meta */
+  --st-fg-4:          #6E7692;   /* tertiary / labels */
+  --st-fg-5:          #3E465E;   /* disabled / tick marks */
+
+  /* --- Brand primary (night indigo) --- */
+  --st-indigo-50:     #E9EBFF;
+  --st-indigo-100:    #C7CCFF;
+  --st-indigo-300:    #7B86FF;
+  --st-indigo-500:    #5B6BFF;   /* primary CTA */
+  --st-indigo-600:    #4A5AEA;
+  --st-indigo-700:    #3949C7;
+  --st-indigo-900:    #1E2570;
+
+  /* --- Accent (sunrise gold) — wake, alarm, warmth --- */
+  --st-gold-100:      #FFE7B8;
+  --st-gold-300:      #FFC774;
+  --st-gold-500:      #F5A524;   /* accent */
+  --st-gold-600:      #D78A10;
+  --st-gold-700:      #A66200;
+
+  /* --- Mint (edit / active chip / "this is live") --- */
+  --st-mint-300:      #7CE0C9;
+  --st-mint-500:      #3FC6A3;
+  --st-mint-700:      #1E8C73;
+
+  /* --- Semantic --- */
+  --st-success:       #3FC6A3;
+  --st-warning:       #F5A524;
+  --st-danger:        #FF5C7A;
+  --st-info:          #5B6BFF;
+
+  /* --- Sleep-stage colors (for charts) --- */
+  --st-stage-awake:   #F5A524;
+  --st-stage-rem:     #7B86FF;
+  --st-stage-light:   #5B6BFF;
+  --st-stage-deep:    #2B2F83;
+
+  /* ============================================================
+     GRADIENTS — sleep → wake arc is the signature motif
+     ============================================================ */
+  --st-grad-night:    linear-gradient(180deg, #0B1020 0%, #05070F 100%);
+  --st-grad-arc:      conic-gradient(from 210deg,
+                        var(--st-indigo-700) 0deg,
+                        var(--st-indigo-500) 70deg,
+                        var(--st-gold-500) 180deg,
+                        var(--st-gold-300) 220deg,
+                        transparent 260deg);
+  --st-grad-cta:      linear-gradient(135deg, #8A6BFF 0%, #5B6BFF 100%);
+  --st-grad-score:    linear-gradient(135deg, #1E2570 0%, #3949C7 60%, #5B6BFF 100%);
+  --st-grad-hero:     radial-gradient(ellipse at 50% 30%, #1A2340 0%, #05070F 70%);
+
+  /* ============================================================
+     TYPOGRAPHY
+     ============================================================ */
+  --st-font-sans:     "Pretendard Variable", Pretendard, -apple-system,
+                      BlinkMacSystemFont, "Apple SD Gothic Neo",
+                      "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  --st-font-display:  "Pretendard Variable", Pretendard, -apple-system,
+                      "SF Pro Display", "Apple SD Gothic Neo", sans-serif;
+  --st-font-mono:     "SF Mono", ui-monospace, Menlo, monospace;
+
+  /* Type scale (mobile-first; app is 360–412 dp) */
+  --st-text-xs:       11px;
+  --st-text-sm:       13px;
+  --st-text-base:     15px;
+  --st-text-md:       17px;
+  --st-text-lg:       20px;
+  --st-text-xl:       24px;
+  --st-text-2xl:      28px;
+  --st-text-3xl:      34px;
+  --st-text-4xl:      44px;
+  --st-text-clock:    64px;   /* the big 07:10 PM display */
+
+  --st-leading-tight: 1.15;
+  --st-leading-body:  1.45;
+  --st-leading-loose: 1.65;
+
+  --st-tracking-clock:-0.02em;
+  --st-tracking-tight:-0.01em;
+  --st-tracking-wide: 0.08em;   /* LEAP FITNESS label */
+
+  /* ============================================================
+     RADII
+     ============================================================ */
+  --st-r-xs:          6px;
+  --st-r-sm:          10px;
+  --st-r-md:          16px;
+  --st-r-lg:          20px;
+  --st-r-xl:          28px;
+  --st-r-pill:        999px;
+  --st-r-circle:      50%;
+
+  /* ============================================================
+     SPACING (4-pt base)
+     ============================================================ */
+  --st-s-1:  4px;
+  --st-s-2:  8px;
+  --st-s-3:  12px;
+  --st-s-4:  16px;
+  --st-s-5:  20px;
+  --st-s-6:  24px;
+  --st-s-7:  32px;
+  --st-s-8:  40px;
+  --st-s-9:  56px;
+  --st-s-10: 72px;
+
+  /* ============================================================
+     SHADOWS & GLOWS (night-safe — soft, never harsh)
+     ============================================================ */
+  --st-shadow-card:   0 8px 24px rgba(0,0,0,0.32);
+  --st-shadow-sheet:  0 -12px 40px rgba(0,0,0,0.45);
+  --st-shadow-cta:    0 10px 30px rgba(91,107,255,0.32);
+  --st-shadow-cta-white: 0 10px 24px rgba(255,255,255,0.08), 0 1px 0 rgba(255,255,255,0.04) inset;
+
+  --st-glow-moon:     0 0 60px 12px rgba(255,255,255,0.10);
+  --st-glow-gold:     0 0 40px 6px rgba(245,165,36,0.28);
+  --st-glow-indigo:   0 0 40px 6px rgba(91,107,255,0.35);
+
+  /* ============================================================
+     MOTION
+     ============================================================ */
+  --st-ease-soft:     cubic-bezier(0.22, 0.61, 0.36, 1);
+  --st-ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --st-ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+  --st-dur-fast:      140ms;
+  --st-dur-base:      240ms;
+  --st-dur-slow:      420ms;
+
+  /* ============================================================
+     HAIRLINES / BORDERS
+     ============================================================ */
+  --st-border-1:      1px solid rgba(255,255,255,0.06);
+  --st-border-2:      1px solid rgba(255,255,255,0.10);
+  --st-divider:       1px solid rgba(255,255,255,0.06);
+}
+
+/* ============================================================
+   SEMANTIC TYPOGRAPHY PRIMITIVES
+   (Use these directly; don't redefine in components.)
+   ============================================================ */
+
+html, body {
+  font-family: var(--st-font-sans);
+  color: var(--st-fg-2);
+  background: var(--st-bg-0);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.st-clock {
+  font-family: var(--st-font-display);
+  font-size: var(--st-text-clock);
+  font-weight: 300;           /* thin — matches Samsung clock */
+  letter-spacing: var(--st-tracking-clock);
+  color: var(--st-fg-1);
+  line-height: 1;
+}
+.st-clock-ampm { font-size: 28px; font-weight: 500; opacity: 0.9; }
+
+.st-display {
+  font-family: var(--st-font-display);
+  font-size: var(--st-text-3xl);
+  font-weight: 700;
+  line-height: var(--st-leading-tight);
+  letter-spacing: var(--st-tracking-tight);
+  color: var(--st-fg-1);
+}
+
+.st-h1 { font-size: var(--st-text-2xl); font-weight: 700; line-height: 1.2;  color: var(--st-fg-1); letter-spacing: -0.005em; }
+.st-h2 { font-size: var(--st-text-xl);  font-weight: 700; line-height: 1.25; color: var(--st-fg-1); }
+.st-h3 { font-size: var(--st-text-lg);  font-weight: 600; line-height: 1.3;  color: var(--st-fg-1); }
+.st-title-screen {
+  /* The "수면 트래커 / LEAP FITNESS" app header */
+  font-size: var(--st-text-2xl);
+  font-weight: 600;
+  color: rgba(255,255,255,0.72);
+  letter-spacing: -0.005em;
+}
+.st-title-kicker {
+  font-size: var(--st-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--st-tracking-wide);
+  color: var(--st-fg-4);
+  text-transform: uppercase;
+}
+
+.st-body      { font-size: var(--st-text-base); font-weight: 400; line-height: var(--st-leading-body); color: var(--st-fg-2); }
+.st-body-lg   { font-size: var(--st-text-md);   font-weight: 400; line-height: var(--st-leading-body); color: var(--st-fg-2); }
+.st-body-sm   { font-size: var(--st-text-sm);   font-weight: 400; line-height: var(--st-leading-body); color: var(--st-fg-3); }
+.st-meta      { font-size: var(--st-text-sm);   font-weight: 500; color: var(--st-fg-3); }
+.st-caption   { font-size: var(--st-text-xs);   font-weight: 500; color: var(--st-fg-4); letter-spacing: 0.01em; }
+
+.st-label     { font-size: var(--st-text-sm);   font-weight: 600; color: var(--st-fg-2); }
+.st-button    { font-size: var(--st-text-md);   font-weight: 700; letter-spacing: -0.005em; }
+
+/* Numeric emphasis — sleep scores, durations */
+.st-num-hero  { font-family: var(--st-font-display); font-size: 56px; font-weight: 700; color: var(--st-fg-1); line-height: 1; letter-spacing: -0.02em; }
+.st-num-md    { font-family: var(--st-font-display); font-size: var(--st-text-xl); font-weight: 700; color: var(--st-fg-1); }
